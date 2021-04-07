@@ -179,7 +179,7 @@ public extension URLMatcher {
         "uint64": { pathComponents, index in
             UInt64(pathComponents[index])
         },
-        "Double": { pathComponents, index in
+        "double": { pathComponents, index in
             Double(pathComponents[index])
         },
         "float": { pathComponents, index in
@@ -187,6 +187,11 @@ public extension URLMatcher {
         },
         "uuid": { pathComponents, index in
             UUID(uuidString: pathComponents[index])
+        },
+        "base64": { pathComponents, index in
+            let base64 = pathComponents[index]
+            let data = Data(base64Encoded: base64)
+            return data
         },
         "path": { pathComponents, index in
             pathComponents[index..<pathComponents.count].joined(separator: "/")
