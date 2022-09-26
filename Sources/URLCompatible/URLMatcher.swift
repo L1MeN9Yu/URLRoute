@@ -31,7 +31,7 @@ extension URLMatcher {
     ///
     /// - returns: A `URLMatchComponents` struct that holds the URL pattern string, a dictionary of
     ///            the URL placeholder values.
-    open func match(_ url: URLConvertible, from candidates: [URLPattern]) -> URLMatchResult? {
+    public func match(_ url: URLConvertible, from candidates: [URLPattern]) -> URLMatchResult? {
         let urlConvertible = normalizeURL(url)
         let scheme = urlConvertible.url?.scheme
         let stringPathComponents = self.stringPathComponents(from: url)

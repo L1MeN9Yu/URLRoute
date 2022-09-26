@@ -68,7 +68,7 @@ public extension URLRouter {
     ///         an URL, so it's recommended to implement this method only for mocking.
     @discardableResult
     func push(_ url: URLConvertible, context: Any? = nil, from: UINavigationControllerType? = nil, animated: Bool = true) -> UIViewController? {
-        guard let viewController = self.viewController(for: url, context: context) else { return nil }
+        guard let viewController = viewController(for: url, context: context) else { return nil }
         return push(viewController, from: from, animated: animated)
     }
 
@@ -95,7 +95,7 @@ public extension URLRouter {
     ///         an URL, so it's recommended to implement this method only for mocking.
     @discardableResult
     func present(_ url: URLConvertible, context: Any? = nil, wrap: UINavigationController.Type? = nil, from: UIViewControllerType? = nil, animated: Bool = true, completion: (() -> ())? = nil) -> UIViewController? {
-        guard let viewController = self.viewController(for: url, context: context) else { return nil }
+        guard let viewController = viewController(for: url, context: context) else { return nil }
         return present(viewController, wrap: wrap, from: from, animated: animated, completion: completion)
     }
 
@@ -129,7 +129,7 @@ public extension URLRouter {
     ///         recommended to implement this method only for mocking.
     @discardableResult
     func open(_ url: URLConvertible, context: Any? = nil) -> Bool {
-        guard let handler = self.handler(for: url, context: context) else { return false }
+        guard let handler = handler(for: url, context: context) else { return false }
         return handler()
     }
 }

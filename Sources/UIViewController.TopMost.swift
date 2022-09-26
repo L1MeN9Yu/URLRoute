@@ -6,13 +6,13 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
     private class var sharedApplication: UIApplication? {
         UIApplication.shared
     }
 
     /// Returns the current application's top most view controller.
-    open class var topMost: UIViewController? {
+    class var topMost: UIViewController? {
         guard let currentWindows = sharedApplication?.windows else { return nil }
         var rootViewController: UIViewController?
         for window in currentWindows {
@@ -26,7 +26,7 @@ extension UIViewController {
     }
 
     /// Returns the top most view controller from given view controller's stack.
-    open class func topMost(of viewController: UIViewController?) -> UIViewController? {
+    class func topMost(of viewController: UIViewController?) -> UIViewController? {
         // presented view controller
         if let presentedViewController = viewController?.presentedViewController {
             return topMost(of: presentedViewController)
@@ -34,19 +34,22 @@ extension UIViewController {
 
         // UITabBarController
         if let tabBarController = viewController as? UITabBarController,
-           let selectedViewController = tabBarController.selectedViewController {
+           let selectedViewController = tabBarController.selectedViewController
+        {
             return topMost(of: selectedViewController)
         }
 
         // UINavigationController
         if let navigationController = viewController as? UINavigationController,
-           let visibleViewController = navigationController.visibleViewController {
+           let visibleViewController = navigationController.visibleViewController
+        {
             return topMost(of: visibleViewController)
         }
 
         // UIPageController
         if let pageViewController = viewController as? UIPageViewController,
-           pageViewController.viewControllers?.count == 1 {
+           pageViewController.viewControllers?.count == 1
+        {
             return topMost(of: pageViewController.viewControllers?.first)
         }
 
